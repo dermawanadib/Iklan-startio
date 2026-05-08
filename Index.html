@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<style>
+* {margin:0; padding:0; box-sizing:border-box;}
+body {background:#ffffff; overflow:hidden;}
+
+#wadah-iklan {
+  width: 100%;
+  max-width: 728px;
+  height: 90px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.isi-iklan {
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+.efek-pudar {
+  animation: gerakPudar 1.2s;
+}
+@keyframes gerakPudar {
+  from {opacity: 0.4;}
+  to {opacity: 1;}
+}
+</style>
+</head>
+<body>
+
+<div id="wadah-iklan">
+    <!-- IKLAN NOMOR 1 -->
+    <div id="iklan1" class="isi-iklan efek-pudar" style="display:block;">
+        <!-- ====================================== -->
+        <!-- 204572914 -->
+        <!-- ====================================== -->
+    </div>
+
+    <!-- IKLAN NOMOR 2 -->
+    <div id="iklan2" class="isi-iklan efek-pudar">
+        <!-- ====================================== -->
+        <!-- 204804791 -->
+        <!-- ====================================== -->
+    </div>
+
+    <!-- IKLAN NOMOR 3 -->
+    <div id="iklan3" class="isi-iklan efek-pudar">
+        <!-- ====================================== -->
+        <!-- 204811741 -->
+        <!-- ====================================== -->
+    </div>
+</div>
+
+<script>
+let posisiSekarang = 1;
+let jumlahIklan = 3;
+
+function gantiIklan() {
+    for(let i=1; i<=jumlahIklan; i++){
+        document.getElementById('iklan'+i).style.display = 'none';
+    }
+    posisiSekarang++;
+    if(posisiSekarang > jumlahIklan) posisiSekarang = 1;
+    document.getElementById('iklan'+posisiSekarang).style.display = 'block';
+}
+
+// Ganti iklan setiap 30 detik
+setInterval(gantiIklan, 30000);
+</script>
+
+</body>
+</html>
