@@ -1,76 +1,96 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<style>
-* {margin:0; padding:0; box-sizing:border-box;}
-body {background:#ffffff; overflow:hidden;}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Iklan Start.io</title>
+    <script type="text/javascript" src="https://sdk.start.io/startio.js"></script>
+    <style>
+        * {margin:0; padding:0; box-sizing:border-box;}
+        body {background:#ffffff; overflow:hidden;}
 
-#wadah-iklan {
-  width: 100%;
-  max-width: 728px;
-  height: 90px;
-  margin: 0 auto;
-  overflow: hidden;
-  position: relative;
-}
+        #wadah_iklan {
+            width: 100%;
+            max-width: 728px;
+            height: 90px;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+            background: #fff;
+        }
 
-.isi-iklan {
-  width: 100%;
-  height: 100%;
-  display: none;
-}
+        .kotak_iklan {
+            width: 100%;
+            height: 100%;
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
 
-.efek-pudar {
-  animation: gerakPudar 1.2s;
-}
-@keyframes gerakPudar {
-  from {opacity: 0.4;}
-  to {opacity: 1;}
-}
-</style>
+        .muncul {
+            display: block;
+            animation: efekMuncul 0.8s;
+        }
+
+        @keyframes efekMuncul {
+            from {opacity: 0.3;}
+            to {opacity: 1;}
+        }
+    </style>
 </head>
 <body>
 
-<div id="wadah-iklan">
-    <!-- IKLAN NOMOR 1 -->
-    <div id="iklan1" class="isi-iklan efek-pudar" style="display:block;">
-        <!-- ====================================== -->
-        <!-- 204572914 -->
-        <!-- ====================================== -->
+<div id="wadah_iklan">
+    <!-- IKLAN 1 -->
+    <div id="iklan_1" class="kotak_iklan muncul">
+        <script type="text/javascript">
+            startio.displayAd({
+                placementId: "204572914",
+                container: "iklan_1"
+            });
+        </script>
     </div>
 
-    <!-- IKLAN NOMOR 2 -->
-    <div id="iklan2" class="isi-iklan efek-pudar">
-        <!-- ====================================== -->
-        <!-- 204804791 -->
-        <!-- ====================================== -->
+    <!-- IKLAN 2 -->
+    <div id="iklan_2" class="kotak_iklan">
+        <script type="text/javascript">
+            startio.displayAd({
+                placementId: "204804791",
+                container: "iklan_2"
+            });
+        </script>
     </div>
 
-    <!-- IKLAN NOMOR 3 -->
-    <div id="iklan3" class="isi-iklan efek-pudar">
-        <!-- ====================================== -->
-        <!-- 204811741 -->
-        <!-- ====================================== -->
+    <!-- IKLAN 3 -->
+    <div id="iklan_3" class="kotak_iklan">
+        <script type="text/javascript">
+            startio.displayAd({
+                placementId: "204811741",
+                container: "iklan_3"
+            });
+        </script>
     </div>
 </div>
 
 <script>
-let posisiSekarang = 1;
-let jumlahIklan = 3;
+    let posisi = 1;
+    let total_iklan = 3;
 
-function gantiIklan() {
-    for(let i=1; i<=jumlahIklan; i++){
-        document.getElementById('iklan'+i).style.display = 'none';
+    function gantiIklan() {
+        // Sembunyikan semua
+        for(let i=1; i<=total_iklan; i++) {
+            document.getElementById('iklan_'+i).classList.remove('muncul');
+        }
+        // Pindah urutan
+        posisi++;
+        if(posisi > total_iklan) posisi = 1;
+        // Tampilkan yang baru
+        document.getElementById('iklan_'+posisi).classList.add('muncul');
     }
-    posisiSekarang++;
-    if(posisiSekarang > jumlahIklan) posisiSekarang = 1;
-    document.getElementById('iklan'+posisiSekarang).style.display = 'block';
-}
 
-// Ganti iklan setiap 30 detik
-setInterval(gantiIklan, 30000);
+    // Ganti setiap 30 detik
+    setInterval(gantiIklan, 30000);
 </script>
 
 </body>
